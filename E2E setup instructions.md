@@ -49,7 +49,7 @@
 <br/><br>
 - Execute `kubectl get pods` and make sure all pods are ready and in running state. (may take a couple minutes)
 <br/><br>
-- Go to Azure portal and execute a direct method on the leaf device and confirm that a response is received.
+- Go to Azure portal and execute a direct method on the leaf device (method name: echo) and confirm that a response is received.
 
 ### Run E2E tests
 
