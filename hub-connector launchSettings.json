@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "hub-connector": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__EdgeDevice": "<EDGE DEVICE CONNECTION STRING>",
+        "ConnectionStrings__Broker": "HostName=localhost;TcpPort=1883;ClientId=e4k-broker;UseTls=false"
+      },
+      "applicationUrl": "https://localhost:52009;http://localhost:52010"
+    }
+  }
+}

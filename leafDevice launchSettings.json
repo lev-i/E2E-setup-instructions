@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "leaf-device": {
+      "commandName": "Project",
+      "applicationUrl": "http://localhost:5000/",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionStrings__cs": "<LEAF DEVICE CONNECTION STRING>;MqttGatewayHostName=localhost;TcpPort=1883;ClientId=e4k-broker;UseTls=false;CaFile=ca.pem"
+      }
+    }
+  }
+}
