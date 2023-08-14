@@ -5,7 +5,7 @@
     - Double check docker kubernetes is being used: ` kubectl config get-contexts`
 <br/><br>    
 - Install E4K.
-    - Execute in Visual Studio terminal: ` helm install e4k oci://e4kpreview.azurecr.io/helm/az-e4k --version 0.5.0-rc1`
+    - `helm install e4k oci://e4kpreview.azurecr.io/helm/az-e4k --version 0.5.0-rc1`
 <br/><br>
 -  Execute 'cert-w.sh' script. 
     - `bash cert-w.sh`
