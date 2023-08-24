@@ -19,7 +19,7 @@
     - https://github.com/Azure/e4k-iothub-connector/tree/main/test/leaf-device
 <br/><br>
 - Install E4K (If does not work on CMD/Powershell, using VS terminal or download Cmder: https://cmder.app/)
-    - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev  --set global.quickstart=true`
+    - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev`
         - <mark>Note:</mark> Uninstall using: `helm uninstall e4k && kubectl get crds -o name | grep "az-edge.com" | xargs kubectl delete`
 <br/><br>
 -  Execute 'cert-w.sh' script. 
