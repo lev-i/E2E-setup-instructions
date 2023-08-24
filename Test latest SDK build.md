@@ -15,6 +15,9 @@
 - On the Tools menu, select Nuget Package Manager > Package Manager Console.
     - Execute `Install-Package MqttSdkLite -version 0.1.152-dev`
 <br/><br>     
+- Copy-paste the files from leaf-device project and put them in this VS project.
+    - https://github.com/Azure/e4k-iothub-connector/tree/main/test/leaf-device
+<br/><br>
 - Install E4K (If does not work on CMD/Powershell, using VS terminal or download Cmder: https://cmder.app/)
     - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev  --set global.quickstart=true`
         - <mark>Note:</mark> Uninstall using: `helm uninstall e4k && kubectl get crds -o name | grep "az-edge.com" | xargs kubectl delete`
@@ -39,3 +42,8 @@
 <br/><br>
 - Execute `kubectl get pods` and make sure all pods are ready and in running state. (may take a couple minutes)
 - Troubleshoot any pod: `kubectl logs <POD NAME>`    
+<br/><br>
+- Run leaf-device project.
+    - Update the connection string in Device.cs to be as following:
+        - `"<LEAF_DEVICE CONNECTION STRING>;MqttGatewayHostName=localhost;UseTls=true;TcpPort=8883;CaFile=ca.pem"`
+    - Run the leaf-device project and make sure device successfully sends telemetry messages and it received the Twin information.
