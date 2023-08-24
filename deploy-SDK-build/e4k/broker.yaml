@@ -1,0 +1,32 @@
+apiVersion: az-edge.com/v1alpha3
+kind: Broker
+metadata:
+  name: e4k-broker
+  namespace: default
+spec:
+  mode: distributed
+  cardinality:
+    frontend:
+      replicas: 2
+    backendChain:
+      replicas: 1
+      partitions: 2
+      workers: 1
+  brokerImage:
+    pullPolicy: Always
+    repository: edgebuilds.azurecr.io/dmqtt-pod
+    tag: validated
+  healthManagerImage:
+    pullPolicy: Always
+    repository: edgebuilds.azurecr.io/dmqtt-operator
+    tag: validated
+  authImage:
+    pullPolicy: Always
+    repository: edgebuilds.azurecr.io/dmqtt-authentication
+    tag: validated
+  diagnostics:
+    diagnosticServiceEndpoint: azedge-diagnostics-service:9700
+    enableMetrics: true  
+    enableTracing: true  
+    logLevel: debug,hyper=off,kube_client=off,tower=off,conhash=off,h2=off
+    enableSelfCheck: true

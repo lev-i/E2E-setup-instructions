@@ -1,0 +1,11 @@
+apiVersion: az-edge.com/v1alpha3 
+kind: BrokerAuthentication 
+metadata: 
+  name: "sat-only"
+  namespace: default 
+spec: 
+  listenerRef: 
+    - "my-non-tls-listener"
+  authenticationMethods: 
+    - sat: 
+        audiences: ["azedge-iothub-connector-module"]
