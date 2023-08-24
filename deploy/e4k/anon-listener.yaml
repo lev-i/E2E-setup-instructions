@@ -1,0 +1,10 @@
+apiVersion: az-edge.com/v1alpha3
+kind: BrokerListener
+metadata:
+  name: my-non-tls-listener
+  namespace: default
+spec:
+  brokerRef: "e4k-broker"
+  authenticationEnabled: false
+  authorizationEnabled: false
+  port: 1883
