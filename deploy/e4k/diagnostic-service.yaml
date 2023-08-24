@@ -1,0 +1,11 @@
+apiVersion: az-edge.com/v1alpha3
+kind: DiagnosticService
+metadata:
+  name: azedge-diagnostics-service
+  namespace: default
+spec:
+  image:
+    pullPolicy: Always
+    repository: edgebuilds.azurecr.io/diagnostics-service
+    tag: validated
+  logFormat: "text"
