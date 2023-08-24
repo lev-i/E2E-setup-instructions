@@ -1,4 +1,8 @@
 ### Prerequisites
+
+- Install kubectl for windows.
+    - https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
+<br/><br>
 - Open docker desktop.
     - Go to settings -> Kubernetes tab.
     - Enable Kubernetes (might take a couple minutes)
@@ -72,14 +76,5 @@
 
 ### Run E2E tests
 
-- Copy the file `runsettings.template` from e4k hub connector repo and update the template with the hub connection string.
-    - Go to /test/MqttSdkLite.E2ETests/Properties and paste the file.
-<br/><br>
-- Copy the contents of file `hub-connector launchSettings.json` from this repo and update it with the edge device connection string.
-    - Go to /src/hub-connector/Properties/ and paste file and rename it to `launchSettings.json` 
-<br/><br>
-- Copy the contents of file `leafDevice launchSettings.json` from this repo and update it with the leaf device connection string.
-    - Go to /test/leaf-device/Properties/ and paste file and rename it to `launchSettings.json`
-<br/><br>
 - Update test files (e.g: DirectDeviceTest.cs, E4KDeviceTest.cs etc) to use the respective device ids.
     - Execute E2E tests to make sure tests work as expected.
