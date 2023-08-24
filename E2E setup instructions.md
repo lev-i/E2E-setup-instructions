@@ -36,13 +36,26 @@
 - Push the images (hub-connector & leaf-device).
     - `docker push <your ACR>.azurecr.io/<IMAGE NAME USED FOR hub-connector AND leaf device>:1.0.0`
 <br/><br>
-- Go to deploy folder (within e4k-iothub-connector repo) and update the hub-connector and leaf-device .yaml files to use the above created images.
+- Go to deploy folder (within e4k-iothub-connector repo) and update the hub-connector.yaml with hub-connector image create above.
+- Update leaf-device.yaml and leaf-device-e2e-x509.yaml with leaf-device image created above.
 <br/><br>
-- Create an IoT hub, create an edge device (name:e4k-edge-1), create a non-edge leaf device (name:leaf-device-1) on the hub. Set the parent of the leaf device to be the edge device.
+- Create an IoT hub, create an edge device (name: e4k-edge-1), create a non-edge leaf device (name: leaf-device-1) on the hub. Set the parent of the leaf device to be the edge device.
 <br/><br>
 - Create kubernetes secret for both edge device and the leaf device.
     - `kubectl create secret generic e4k-gateway-secrets --from-literal=edgeDevice="<EDGE DEVICE CONNECTION STRING>;UseTls=true;ClientId=hub-connector;MqttVersion=5;CaFile=/certs/ca.pem" --from-literal=Broker=HostName=azedge-dmqtt-frontend`
     - `kubectl create secret generic leaf-device-secrets --from-literal=cs="<LEAF DEVICE CONNECTION STRING>;MqttGatewayHostName=azedge-dmqtt-frontend;CaFile=/certs/ca.pem"`
+<br/><br>
+- Create certificate and secret for x509 device (within e4k-iothub-connector repo):
+    - `openssl genrsa 2048 > x509-leaf-device-1-cert-key.pem`
+    - `openssl req -new -key x509-leaf-device-1-cert-key.pem -out csr.pem`  
+        <mark>-Note:</mark> set the value for __Common Name (e.g. server FQDN or YOUR name)__ as `X509-leaf-device-1`
+    - `openssl x509 -req -days 365 -in csr.pem -signkey x509-leaf-device-1-cert-key.pem -out x509-leaf-device-1-cert.pem`
+    - `openssl x509 -in X509-leaf-device-1.pem -noout -fingerprint | cut -d "=" -f 2 | sed 's/://g'`
+    - Go to portal and create a x509 self-signed device (name: x509-leaf-device-1) and use the value created in last step as primary and secondary thumbprint.
+    - Set the parent of this x509 device to be e4k-edge-1.
+<br/><br>
+- Create kubernetes secret for x509 device.
+    - `kubectl create secret generic leaf-device-x509-secrets --from-file=device-x509-cert.pem=x509-leaf-device-1-cert.pem --from-file=device-x509-key.pem=x509-leaf-device-1-cert-key.pem --from-literal=cs="HostName=<YOUR HUB HOSTNAME>;DeviceId=x509-leaf-device-1;CertFile=/certs/device/secrets/device-x509-cert.pem;KeyFile=/certs/device/secrets/device-x509-key.pem;MqttGatewayHostName=azedge-dmqtt-frontend;CaFile=/certs/ca.pem`
 <br/><br>
 - Create a leaf device (non edge device) on the Iot Hub. This leaf device will not have any parent and will be a direct leaf device. This is probably only used in E2E.
     - `kubectl create secret generic direct-device-secrets --from-literal=cs="<LEAF DEVICE CONNECTION STRING>"`
@@ -51,11 +64,11 @@
     - `kubectl apply -f deploy/e4k`
     - `kubectl apply -f deploy/hub-connector.yaml`
     - `kubectl apply -f deploy/leaf-device.yaml`
+    - `kubectl apply -f deploy/leaf-device-e2e-x509.yaml`
 <br/><br>
 - Execute `kubectl get pods` and make sure all pods are ready and in running state. (may take a couple minutes)
 - Troubleshoot any pod: `kubectl logs <POD NAME>`
-<br/><br>
-- Go to Azure portal and execute a direct method on the leaf device (method name: echo) and confirm that a response is received on portal.
+- Go to Azure portal and execute a direct method on the leaf device (method name: echo) and confirm that a response is received on portal. Similarly for x509 leaf device.
 
 ### Run E2E tests
 
