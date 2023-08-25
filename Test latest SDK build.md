@@ -7,6 +7,13 @@
     - Enable Kubernetes (might take a couple minutes)
     - Double check docker kubernetes is being used: ` kubectl config get-contexts`
 <br/><br>  
+4. Create an empty project in Visual Studio, on the Tools menu, select Options > NuGet Package Manager > Package Sources. Select the green plus in the upper-right corner and enter the name and source URL below:
+    - Name: sdklite-previews
+    - Soruce: https://pkgs.dev.azure.com/e4k-sdk/SdkLite/_packaging/sdklite-previews/nuget/v3/index.json
+<br/><br>  
+5. On the Tools menu, select Nuget Package Manager > Package Manager Console.
+    - Execute `Install-Package MqttSdkLite -version 0.1.152-dev`
+<br/><br>
 3. Clone samples from e4k-iothub-connector repo.
     - Create test app directory: `mkdir hub-connector-samples`
     - Switch to test app directory: `cd hub-connector-samples`
@@ -18,15 +25,8 @@
     - Add hub-connector.yaml: `echo "deploy/iothub-connector.yaml" >> .git/info/sparse-checkout`
     - Add e4k CRDs: `echo "deploy/e4k/" >> .git/info/sparse-checkout`
     - Pull the test app project files: `git pull origin main`
-    - Open /test/leaf-device/leaf-device.csproj in visual studio.
+    - Now import these samples in the new VS solution you created and add dependency to MqttSdkLite package in the samples.
 <br/><br> 
-4. In Visual Studio, on the Tools menu, select Options > NuGet Package Manager > Package Sources. Select the green plus in the upper-right corner and enter the name and source URL below:
-    - Name: sdklite-previews
-    - Soruce: https://pkgs.dev.azure.com/e4k-sdk/SdkLite/_packaging/sdklite-previews/nuget/v3/index.json
-<br/><br>  
-5. On the Tools menu, select Nuget Package Manager > Package Manager Console.
-    - Execute `Install-Package MqttSdkLite -version 0.1.152-dev`
-<br/><br>
 6. Install E4K (If does not work on CMD/Powershell, using VS terminal or download Cmder: https://cmder.app/)
     - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev`
         - <mark>Note:</mark> Incase installing E4K fails, uninstall first using: `helm uninstall e4k && kubectl get crds -o name | grep "az-edge.com" | xargs kubectl delete`
