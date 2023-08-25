@@ -32,7 +32,7 @@
     - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev`
         - <mark>Note:</mark> Incase installing E4K fails, uninstall first using: `helm uninstall e4k && kubectl get crds -o name | grep "az-edge.com" | xargs kubectl delete`
 <br/><br>
-7. Execute 'cert-w.sh' script. 
+7. Execute 'cert-w.sh' script (Available in the repo with this instructions file). 
     - `bash cert-w.sh`
     - `kubectl create configmap client-ca --from-file ca.pem=ca.pem`
     - `kubectl create secret tls e4k-custom-ca-cert --cert=e4k-auth-ca.pem  --key=e4k-auth-ca-key.pem`

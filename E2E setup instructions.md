@@ -19,7 +19,7 @@
     - `git remote add -f origin https://github.com/Azure/e4k-iothub-connector/`
     - `git pull origin main`
 <br/><br>
-5. Execute 'cert-w.sh' script. 
+5. Execute 'cert-w.sh' script.(Available in the repo with this instructions file) 
     - `bash cert-w.sh`
     - `kubectl create configmap client-ca --from-file ca.pem=ca.pem`
     - `kubectl create secret tls e4k-custom-ca-cert --cert=e4k-auth-ca.pem  --key=e4k-auth-ca-key.pem`
