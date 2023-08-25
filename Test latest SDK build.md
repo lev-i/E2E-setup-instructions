@@ -7,7 +7,7 @@
     - Enable Kubernetes (might take a couple minutes)
     - Double check docker kubernetes is being used: ` kubectl config get-contexts`
 <br/><br>  
-4. Create an empty project in Visual Studio, on the Tools menu, select Options > NuGet Package Manager > Package Sources. Select the green plus in the upper-right corner and enter the name and source URL below:
+4. Create a new project in Visual Studio, on the Tools menu, select Options > NuGet Package Manager > Package Sources. Select the green plus in the upper-right corner and enter the name and source URL below:
     - Name: sdklite-previews
     - Soruce: https://pkgs.dev.azure.com/e4k-sdk/SdkLite/_packaging/sdklite-previews/nuget/v3/index.json
 <br/><br>  
