@@ -52,7 +52,7 @@
         - `kubectl create secret docker-registry e4kacr --docker-server=edgebuilds.azurecr.io --docker-username=<TOKEN NAME> --docker-password=<TOKEN PASSWORD>`
 <br/><br>        
 11. Deploy the hub-connector as a kubernetes pod.
-    - Open deploy/hub-connector.yaml in text editor and update value for 'image' as `<>`
+    - Open deploy/hub-connector.yaml in text editor and update value for 'image' as `edgebuilds.azurecr.io/hub-connector-v1:1.0.0`
     - `kubectl apply -f deploy/hub-connector.yaml`
 <br/><br>
 12. Execute `kubectl get pods` and make sure all pods are ready and in running state. (may take a couple minutes)
