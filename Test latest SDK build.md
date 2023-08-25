@@ -16,6 +16,7 @@
     - Add leaf-device sample: `echo "test/leaf-device/" >> .git/info/sparse-checkout`
     - Add leaf-module sample: `echo "test/module-sample/" >> .git/info/sparse-checkout`
     - Add hub-connector.yaml: `echo "deploy/iothub-connector.yaml" >> .git/info/sparse-checkout`
+    - Add e4k CRDs: `echo "deploy/e4k/" >> .git/info/sparse-checkout`
     - Pull the test app project files: `git pull origin main`
     - Open /test/leaf-device/leaf-device.csproj in visual studio.
 <br/><br> 
@@ -27,7 +28,7 @@
     - Execute `Install-Package MqttSdkLite -version 0.1.152-dev`
 <br/><br>
 6. Install E4K (If does not work on CMD/Powershell, using VS terminal or download Cmder: https://cmder.app/)
-    - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev   --set global.quickstart=true`
+    - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev`
         - <mark>Note:</mark> Incase installing E4K fails, uninstall first using: `helm uninstall e4k && kubectl get crds -o name | grep "az-edge.com" | xargs kubectl delete`
 <br/><br>
 7. Execute 'cert-w.sh' script. 
@@ -51,8 +52,9 @@
         - Create a kubernetes secret to keep the above info as a secret.
         - `kubectl create secret docker-registry e4kacr --docker-server=edgebuilds.azurecr.io --docker-username=<TOKEN NAME> --docker-password=<TOKEN PASSWORD>`
 <br/><br>        
-11. Deploy the hub-connector as a kubernetes pod.
+11. Deploy the e4k CRDs and hub-connector as a kubernetes pod.
     - Open deploy/hub-connector.yaml in text editor and update value for 'image' as `edgebuilds.azurecr.io/hub-connector-v1:1.0.0`
+    - `kubectl apply -f deploy/e4k/`
     - `kubectl apply -f deploy/hub-connector.yaml`
 <br/><br>
 12. Execute `kubectl get pods` and make sure all pods are ready and in running state. (may take a couple minutes)
