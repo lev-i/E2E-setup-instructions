@@ -63,7 +63,7 @@
     - `openssl req -new -key x509-leaf-device-1-cert-key.pem -out csr.pem`  
         <mark>-Note:</mark> set the value for __Common Name (e.g. server FQDN or YOUR name)__ as `X509-leaf-device-1`
     - `openssl x509 -req -days 365 -in csr.pem -signkey x509-leaf-device-1-cert-key.pem -out x509-leaf-device-1-cert.pem`
-    - `openssl x509 -in X509-leaf-device-1.pem -noout -fingerprint | cut -d "=" -f 2 | sed 's/://g'`
+    - `openssl x509 -in X509-leaf-device-1-cert.pem -noout -fingerprint | cut -d "=" -f 2 | sed 's/://g'`
     - Go to portal and create a x509 self-signed device (name: x509-leaf-device-1) and use the value created in last step as primary and secondary thumbprint.
     - Set the parent of this x509 device to be e4k-edge-1.
 <br/><br>
