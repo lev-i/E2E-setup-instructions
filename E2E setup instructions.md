@@ -10,7 +10,7 @@
 <br/><br>    
 3. Install E4K (If does not work on CMD/Powershell, using VS terminal or download Cmder: https://cmder.app/)
     - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev`
-        - <mark>Note:</mark> Uninstall using: `helm uninstall e4k && kubectl get crds -o name | grep "az-edge.com" | xargs kubectl delete`
+        - <mark>Note:</mark> Incase installing E4K fails, uninstall first using: `helm uninstall e4k && kubectl get crds -o name | grep "az-edge.com" | xargs kubectl delete`
 <br/><br>
 4. Clone E4K hub-connector repo (https://github.com/Azure/e4k-iothub-connector/tree/main)
     - `gh repo clone Azure/e4k-iothub-connector`
