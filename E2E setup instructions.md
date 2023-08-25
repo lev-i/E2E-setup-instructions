@@ -12,8 +12,12 @@
     - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev`
         - <mark>Note:</mark> Incase installing E4K fails, uninstall first using: `helm uninstall e4k && kubectl get crds -o name | grep "az-edge.com" | xargs kubectl delete`
 <br/><br>
-4. Clone E4K hub-connector repo (https://github.com/Azure/e4k-iothub-connector/tree/main)
-    - `gh repo clone Azure/e4k-iothub-connector`
+4. Clone E4K hub-connector repo (https://github.com/Azure/e4k-iothub-connector)
+    - `mkdir iothub-connector`
+    - `cd iothub-connector`
+    - `git init`
+    - `git remote add -f origin https://github.com/Azure/e4k-iothub-connector/`
+    - `git pull origin main`
 <br/><br>
 5. Execute 'cert-w.sh' script. 
     - `bash cert-w.sh`
@@ -38,7 +42,8 @@
     - `dotnet publish src/hub-connector/iothub-connector.csproj /t:PublishContainer --os linux  --arch x64 /p:ContainerRepository="<your ACR>.azurecr.io" /p:ContainerImageName=<your ACR>.azurecr.io/<IMAGE NAME OF YOUR CHOICE> /p:ContainerImageTags=1.0.0`
 <br/><br>
 10. Push the images (hub-connector & leaf-device).
-    - `docker push <your ACR>.azurecr.io/<IMAGE NAME USED FOR hub-connector AND leaf device>:1.0.0`
+    - `docker push <your ACR>.azurecr.io/<IMAGE NAME USED FOR hub connector>:1.0.0`
+    - `docker push <your ACR>.azurecr.io/<IMAGE NAME USED FOR leaf device>:1.0.0`
 <br/><br>
 11. Go to deploy folder (within e4k-iothub-connector repo) and update the hub-connector.yaml with hub-connector image create above.
 <br/><br>
@@ -62,7 +67,7 @@
 16. Create kubernetes secret for x509 device.
     - `kubectl create secret generic leaf-device-x509-secrets --from-file=device-x509-cert.pem=x509-leaf-device-1-cert.pem --from-file=device-x509-key.pem=x509-leaf-device-1-cert-key.pem --from-literal=cs="HostName=<YOUR HUB HOSTNAME>;DeviceId=x509-leaf-device-1;CertFile=/certs/device/secrets/device-x509-cert.pem;KeyFile=/certs/device/secrets/device-x509-key.pem;MqttGatewayHostName=azedge-dmqtt-frontend;CaFile=/certs/ca.pem`
 <br/><br>
-17. Create a leaf device (non edge device) on the Iot Hub. This leaf device will not have any parent and will be a direct leaf device. This is probably only used in E2E.
+17. Create a leaf device (non edge device) on the Iot Hub. This leaf device will not have any parent and will be a direct leaf device.
     - `kubectl create secret generic direct-device-secrets --from-literal=cs="<LEAF DEVICE CONNECTION STRING>"`
 <br/><br>
 18. Deploy everything within /deploy/e4k folder. Also deploy the hub-connector and leaf device separately.
