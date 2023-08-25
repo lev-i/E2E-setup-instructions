@@ -28,6 +28,7 @@
     - Now import these samples in the new VS solution you created and add dependency to MqttSdkLite package in both the samples.
 <br/><br> 
 6. Install E4K (If does not work on CMD/Powershell, using VS terminal or download Cmder: https://cmder.app/)
+    - Install choco: https://docs.chocolatey.org/en-us/choco/setup
     - Install helm: `choco install kubernetes-helm`
     - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev`
         - <mark>Note:</mark> Incase installing E4K fails, uninstall first using: `helm uninstall e4k && kubectl get crds -o name | grep "az-edge.com" | xargs kubectl delete`

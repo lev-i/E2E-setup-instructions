@@ -9,6 +9,9 @@
     - Double check docker kubernetes is being used: ` kubectl config get-contexts`
 <br/><br>    
 3. Install E4K (If does not work on CMD/Powershell, using VS terminal or download Cmder: https://cmder.app/)
+    - Install choco: https://docs.chocolatey.org/en-us/choco/setup
+    - Install helm: `choco install kubernetes-helm`
+    - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev`
     - `helm install e4k oci://edgebuilds.azurecr.io/helm/az-e4k   --version 0.6.0-dev`
         - <mark>Note:</mark> Incase installing E4K fails, uninstall first using: `helm uninstall e4k && kubectl get crds -o name | grep "az-edge.com" | xargs kubectl delete`
 <br/><br>
