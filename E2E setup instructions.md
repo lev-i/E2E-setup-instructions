@@ -55,7 +55,7 @@
 13. Create an IoT hub, create an edge device (name: e4k-edge-1), create a non-edge leaf device (name: leaf-device-1) on the hub. Set the parent of the leaf device to be the edge device.
 <br/><br>
 14. Create kubernetes secret for both edge device and the leaf device.
-    - `kubectl create secret generic e4k-gateway-secrets --from-literal=edgeDevice="<EDGE DEVICE CONNECTION STRING>;UseTls=true;ClientId=hub-connector;MqttVersion=5;CaFile=/certs/ca.pem" --from-literal=Broker=HostName=azedge-dmqtt-frontend`
+    - `kubectl create secret generic e4k-gateway-secrets --from-literal=edgeDevice="<EDGE DEVICE CONNECTION STRING>" --from-literal=Broker=HostName=azedge-dmqtt-frontend;UseTls=true;ClientId=hub-connector;MqttVersion=5;CaFile=/certs/ca.pem`
     - `kubectl create secret generic leaf-device-secrets --from-literal=cs="<LEAF DEVICE CONNECTION STRING>;MqttGatewayHostName=azedge-dmqtt-frontend;CaFile=/certs/ca.pem"`
 <br/><br>
 15. Create certificate and secret for x509 device (within e4k-iothub-connector repo):

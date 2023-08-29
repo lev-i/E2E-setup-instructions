@@ -44,7 +44,7 @@
 8. Create an IoT hub, create an edge device (name: e4k-edge-1), create a non-edge leaf device (name: leaf-device-1) on the hub. Set the parent of the leaf device to be the edge device. Create module identity on the leaf device. (name: leaf-module-1)
 <br/><br>
 9. Create kubernetes secret for both edge device and the leaf device.
-    - `kubectl create secret generic e4k-gateway-secrets --from-literal=edgeDevice="<EDGE DEVICE CONNECTION STRING>;UseTls=true;ClientId=hub-connector;MqttVersion=5;CaFile=/certs/ca.pem" --from-literal=Broker=HostName=azedge-dmqtt-frontend`
+    - `kubectl create secret generic e4k-gateway-secrets --from-literal=edgeDevice="<EDGE DEVICE CONNECTION STRING>" --from-literal=Broker=HostName=azedge-dmqtt-frontend;UseTls=true;ClientId=hub-connector;MqttVersion=5;CaFile=/certs/ca.pem`
 <br/><br>
 10. Get token for EdgeBuilds ACR and create kubernetes secret.
     - Go to Portal and search for EdgeBuilds ACR. (You might need permissions for it. Subscription Id: 5ed2dcb6-29bb-40de-a855-8c24a8260343)
