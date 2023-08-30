@@ -74,7 +74,7 @@
 <br/><br>
 18. Deploy everything within /deploy/e4k folder. Also deploy the hub-connector and leaf device separately.
     - `kubectl apply -f deploy/e4k`
-    - `kubectl apply -f deploy/hub-connector.yaml`
+    - `kubectl apply -f deploy/iothub-connector.yaml`
     - `kubectl apply -f deploy/leaf-device.yaml`
     - `kubectl apply -f deploy/leaf-device-e2e-x509.yaml`
 <br/><br>

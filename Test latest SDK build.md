@@ -57,7 +57,7 @@
 11. Deploy the e4k CRDs and hub-connector as a kubernetes pod.
     - Open deploy/hub-connector.yaml in text editor and update value for 'image' as `edgebuilds.azurecr.io/hub-connector-v1:1.0.0`
     - `kubectl apply -f deploy/e4k/`
-    - `kubectl apply -f deploy/hub-connector.yaml`
+    - `kubectl apply -f deploy/iothub-connector.yaml`
 <br/><br>
 12. Execute `kubectl get pods` and make sure all pods are ready and in running state. (may take a couple minutes)
     - Troubleshoot any pod: `kubectl logs <POD NAME>`
