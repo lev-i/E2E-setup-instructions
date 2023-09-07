@@ -41,7 +41,7 @@
 9. Publish the hub-connector and leaf device as an image.
     - Open CMD/Powershell in e4k-iothub-connector repo.
     - `dotnet publish test/leaf-device/leaf-device.csproj /t:PublishContainer --os linux  --arch x64 /p:ContainerRepository="<your ACR>.azurecr.io" /p:ContainerImageName=<your ACR>.azurecr.io/<IMAGE NAME OF YOUR CHOICE> /p:ContainerImageTags=1.0.0`
-    - `dotnet publish src/hub-connector/iothub-connector.csproj /t:PublishContainer --os linux  --arch x64 /p:ContainerRepository="<your ACR>.azurecr.io" /p:ContainerImageName=<your ACR>.azurecr.io/<IMAGE NAME OF YOUR CHOICE> /p:ContainerImageTags=1.0.0`
+    - `dotnet publish src/iothub-connector/iothub-connector.csproj /t:PublishContainer --os linux  --arch x64 /p:ContainerRepository="<your ACR>.azurecr.io" /p:ContainerImageName=<your ACR>.azurecr.io/<IMAGE NAME OF YOUR CHOICE> /p:ContainerImageTags=1.0.0`
 <br/><br>
 10. Push the images (hub-connector & leaf-device).
     - `docker push <your ACR>.azurecr.io/<IMAGE NAME USED FOR hub connector>:1.0.0`
